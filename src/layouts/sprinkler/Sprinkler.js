@@ -15,8 +15,8 @@ class Sprinkler extends Component {
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1">
-            <h1>Sprinkler</h1>
-            <p>This is the sprinkler page.</p>
+            <h1 style={{textAlign:'center'}}>Sprinkler</h1>
+            <p style={{textAlign:'center'}}>This is the sprinkler page.</p>
           </div>
         </div>
       </main>

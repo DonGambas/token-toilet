@@ -44,23 +44,24 @@ class Toilet extends Component {
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1">
-            <h1>Toilet</h1>
-            <p>This is the toilet page.</p>
+            <h1 style={{textAlign:'center'}}>The Token Toilet</h1>
+            <p style={{textAlign:'center'}}>A hygienic solution for fecal tokens</p>
+            <p style={{textAlign:'center'}}> Pesky airdrops taking over your wallet? Your CryptoKitty won't purr? Is that DAO token balance still triggering your PTSD?  We have the solution!</p>
             {this.state.showButton &&
-              <div>
+              <div style={{display:'flex', flexDirection:'column', justifyContent: 'center'}}>
                 <Button onClick={this.toggleERC20}> Flush ERC20 tokens down the toilet </Button>
-                <Button onClick={this.toggleERC721}> Flush ERC721 tokens down the toilet </Button>
+                <Button onClick={this.toggleERC721} style={{marginTop:'10px'}}> Flush ERC721 tokens down the toilet </Button>
               </div>
             }
             {this.state.showERC20 &&
-              <div>
-                <p>send an erc20</p>
+              <div div style={{display:'flex', flexDirection:'column', justifyContent: 'center'}}>
+                <p>flush an erc20</p>
                 <ContractForm contract="Toilet" method="transferERC20" labels={['Contract Address', 'Amount to Send']} />
               </div>
             }
             {this.state.showERC721 &&
-              <div>
-                <p>send an erc721</p>
+              <div div style={{display:'flex', flexDirection:'column', justifyContent: 'center'}}>
+                <p>flush an erc721</p>
                 <ContractForm contract="Toilet" method="transferERC721" labels={['Contract Address', 'Asset Id']} />
               </div>
             }

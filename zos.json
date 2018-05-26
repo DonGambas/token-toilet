@@ -1,0 +1,7 @@
+{
+  "name": "ethba-erctoilet",
+  "version": "0.1.0",
+  "contracts": {
+    "Toilet": "Toilet"
+  }
+}

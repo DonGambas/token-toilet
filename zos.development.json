@@ -1,0 +1,19 @@
+{
+  "contracts": {
+    "Toilet": {
+      "address": "0x67b5656d60a809915323bf2c40a8bef15a152e3e",
+      "bytecodeHash": "016db9c5cf84170099839a4c7c56ba7821003bc5fde4ea060a38b94cccea9f7a"
+    }
+  },
+  "proxies": {},
+  "app": {
+    "address": "0x9b1f7f645351af3631a656421ed2e40f2802e6c0"
+  },
+  "version": "0.1.0",
+  "package": {
+    "address": "0xe982e462b094850f12af94d21d470e21be9d0e9c"
+  },
+  "provider": {
+    "address": "0x59d3631c86bbe35ef041872d502f218a39fba150"
+  }
+}

@@ -8,7 +8,7 @@ import { DrizzleProvider } from 'drizzle-react'
 import App from './App'
 import HomeContainer from './layouts/home/HomeContainer'
 import ToiletContainer from './layouts/toilet/ToiletContainer'
-import FountainContainer from './layouts/fountain/Fountain'
+import FountainContainer from './layouts/fountain/FountainContainer'
 import SprinklerContainer from './layouts/sprinkler/Sprinkler'
 
 import { LoadingContainer } from 'drizzle-react-components'

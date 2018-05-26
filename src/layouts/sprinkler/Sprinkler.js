@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 
 class Sprinkler extends Component {
-  constructor(props, { authData }) {
+  constructor(props, context) {
     super(props)
-    authData = this.props
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(){
+    //check account DAI balanceOf if 5 or greater call method on contract, return new asset to user
   }
 
   render() {

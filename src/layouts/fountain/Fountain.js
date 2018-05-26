@@ -15,7 +15,7 @@ class Fountain extends Component {
           <div className="pure-u-1-1">
             <h1>Magic ERC Fountain</h1>
             <p>This is the fountain page</p>
-            <Button> Throw some coins, make a wish</Button>
+            <Button> Send 5 dai, make a wish</Button>
           </div>
         </div>
       </main>

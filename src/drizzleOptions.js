@@ -11,9 +11,6 @@ const drizzleOptions = {
   contracts: [
     Toilet
   ],
-  events: {
-    SimpleStorage: ['StorageSet']
-  },
   polls: {
     accounts: 1500
   }

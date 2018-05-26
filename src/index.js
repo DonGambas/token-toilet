@@ -7,7 +7,7 @@ import { DrizzleProvider } from 'drizzle-react'
 // Layouts
 import App from './App'
 import HomeContainer from './layouts/home/HomeContainer'
-import ToiletContainer from './layouts/toilet/Toilet'
+import ToiletContainer from './layouts/toilet/ToiletContainer'
 import FountainContainer from './layouts/fountain/Fountain'
 import SprinklerContainer from './layouts/sprinkler/Sprinkler'
 
@@ -28,7 +28,6 @@ ReactDOM.render((
             <Route path="toilet" component={ToiletContainer} />
             <Route path="fountain" component={FountainContainer} />
             <Route path="sprinkler" component={SprinklerContainer} />
-
           </Route>
         </Router>
       </LoadingContainer>

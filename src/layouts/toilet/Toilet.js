@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
-
+import { ContractForm } from 'drizzle-react-components'
 
 class Toilet extends Component {
   constructor(props, context) {
@@ -55,49 +55,13 @@ class Toilet extends Component {
             {this.state.showERC20 &&
               <div>
                 <p>send an erc20</p>
-                <form>
-                  <FormGroup>
-                    <FormControl
-                      componentClass="input"
-                      type="text"
-                      name="contractAddress"
-                      value={this.state.contractAddress}
-                      onChange={this.handleChange}
-                    />
-                    <FormControl
-                      componentClass="input"
-                      type="text"
-                      name="quantity"
-                      value={this.state.quantity}
-                      onChange={this.handleChange}
-                    />
-                  </FormGroup>
-                  <Button>Flush</Button>
-                </form>
+                <ContractForm contract="Toilet" method="transferERC20" labels={['Contract Address', 'Amount to Send']} />
               </div>
             }
             {this.state.showERC721 &&
               <div>
                 <p>send an erc721</p>
-                <form>
-                  <FormGroup>
-                    <FormControl
-                      componentClass="input"
-                      type="text"
-                      name="contractAddress"
-                      value={this.state.contractAddress}
-                      onChange={this.handleChange}
-                    />
-                    <FormControl
-                      componentClass="input"
-                      type="text"
-                      name="tokenId"
-                      value={this.state.tokenId}
-                      onChange={this.handleChange}
-                    />
-                  </FormGroup>
-                  <Button>Flush</Button>
-                </form>
+                <ContractForm contract="Toilet" method="transferERC721" labels={['Contract Address', 'Asset Id']} />
               </div>
             }
           </div>

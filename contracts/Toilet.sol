@@ -15,10 +15,10 @@ contract ERC721Interface {
     function ownerOf(uint256 _tokenId) public view returns (address _owner);
 }
 
-contract Toilet {
+contract Toilet is ReentrancyGuard {
 
   using SafeMath for uint256;
-  
+
   uint256 public x;
   uint NONFUNGIBLE_PRIZE_COUNT = 2;
   uint FUNGIBLE_PRIZE_COUNT = 1;
@@ -43,7 +43,7 @@ contract Toilet {
 
   /**
   * @dev initialize function for zeppelin os
-  
+
   function initialize(uint256 _x) isInitializer("Toilet", "0") public {
     x = _x;
   }
@@ -60,11 +60,11 @@ contract Toilet {
   * @dev This function can be called to transfer an ERC721 token to this contract address
   */
   function transferERC721(address nonFungibleAddress, uint256 assetId) external {
-      
+
     ERC721Interface nonFungibleToken = ERC721Interface(nonFungibleAddress);
     require (nonFungibleToken.ownerOf(assetId) == msg.sender);
     nonFungibleToken.transferFrom(msg.sender, address(this), assetId);
-    
+
     nonFungibleOwnings[nonFungibleAddress].push(assetId);
     nonFungibleOwningKeys.push(nonFungibleAddress);
 
@@ -79,7 +79,7 @@ contract Toilet {
     ERC20Interface fungibleToken = ERC20Interface(fungibleAddress);
     require (fungibleToken.balanceOf(msg.sender) >= value);
     fungibleToken.transferFrom(msg.sender, address(this), value);
-    
+
     fungibleOwnings[fungibleAddress] = value;
     fungibleOwningKeys.push(fungibleAddress);
 
@@ -87,11 +87,11 @@ contract Toilet {
   }
 
   function _fungibleSend() internal returns(Prize p) {
-    
+
     address tokenAddress = fungibleOwningKeys[_random() % fungibleOwningKeys.length];
     uint256 balance = fungibleOwnings[tokenAddress];
     require (balance > 0);
-    
+
     uint256 quantity = _random() % balance;
     fungibleOwnings[tokenAddress].sub(quantity);
 
@@ -105,11 +105,11 @@ contract Toilet {
   }
 
   function _nonFungibleSend() internal returns(Prize p) {
-    
+
     address assetAddress = nonFungibleOwningKeys[_random() % nonFungibleOwningKeys.length];
     uint256[] storage assetIds = nonFungibleOwnings[assetAddress];
     require (assetIds.length > 0);
-    
+
     uint256 assetId = assetIds[0];
     assetIds[0] = assetIds[assetIds.length - 1];
     assetIds.length--;
@@ -124,11 +124,11 @@ contract Toilet {
   }
 
 
-  //nonreentran openzepplin 
-  function getLoot() external {
+  //nonreentran openzepplin
+  function getLoot() external nonReentrant {
 
     bytes32 boxId = keccak256(
-      block.timestamp, 
+      block.timestamp,
       msg.sender
     );
 
@@ -143,7 +143,8 @@ contract Toilet {
       prizes[counter++] = _fungibleSend();
     }
 
-    emit LootBoxOpen(boxId, prizes); 
+    emit LootBoxOpen(boxId, prizes);
   }
+
 
 }

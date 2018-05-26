@@ -51,6 +51,20 @@ class Toilet extends Component {
               <div style={{display:'flex', flexDirection:'column', justifyContent: 'center'}}>
                 <Button onClick={this.toggleERC20}> Flush ERC20 tokens down the toilet </Button>
                 <Button onClick={this.toggleERC721} style={{marginTop:'10px'}}> Flush ERC721 tokens down the toilet </Button>
+                <FormGroup controlId="formControlsSelect">
+                <FormControl componentClass="select" placeholder="select" onChange={this.handleChange} name="tokeType">
+                  <option value="select">token type</option>
+                  <option value="erc20">ERC20</option>
+                  <option value="erc721">ERC721</option>
+                </FormControl>
+              </FormGroup>
+              <FormGroup controlId="formControlsSelect">
+              <FormControl componentClass="select" placeholder="select" onChange={this.handleChange} name="tokenName">
+                <option value="select">select token</option>
+                <option value="erc20">alkj</option>
+                <option value="erc721">adfadf</option>
+              </FormControl>
+            </FormGroup>
               </div>
             }
             {this.state.showERC20 &&

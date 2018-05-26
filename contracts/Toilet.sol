@@ -8,6 +8,10 @@ contract Toilet is Migratable{
 
   uint256 public x;
 
+  /**
+  * @dev initialize function for zeppelin os
+  */
+
   function initialize(uint256 _x) isInitializer("Toilet", "0") public {
     x = _x;
   }
@@ -17,6 +21,7 @@ contract Toilet is Migratable{
   */
   function transferERC721(address nonFungibleAddress, uint256 assetId) internal {
       ERC721Basic nonFungibleToken = ERC721Basic(nonFungibleAddress);
+      require(nonFungibleToken.ownerOf(assetId) == msg.sender);
       nonFungibleToken.transferFrom(msg.sender, address(this), assetId);
   }
 
@@ -25,6 +30,7 @@ contract Toilet is Migratable{
   */
   function transferERC20(address fungibleAddress, uint256 value) internal {
       ERC20Basic fungibleToken = ERC20Basic(fungibleAddress);
+      require(fungibleToken.balanceOf(msg.sender >= value);
       fungibleToken.transfer(address(this), value);
   }
 

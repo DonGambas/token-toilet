@@ -1,4 +1,4 @@
-import Toilet from './Toilet'
+import ToiletFlusher from './ToiletFlusher'
 import { drizzleConnect } from 'drizzle-react'
 
 // May still need this even with data function to refresh component on updates for this contract.
@@ -10,6 +10,6 @@ const mapStateToProps = state => {
   }
 }
 
-const ToiletContainer = drizzleConnect(Toilet, mapStateToProps);
+const ToiletFlusherContainer = drizzleConnect(ToiletFlusher, mapStateToProps);
 
-export default ToiletContainer
+export default ToiletFlusherContainer

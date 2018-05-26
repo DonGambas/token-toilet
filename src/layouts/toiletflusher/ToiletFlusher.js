@@ -10,7 +10,7 @@ class ToiletFlusher extends Component {
       showERC721: false,
       showButton: true,
       contractAddress: "contract address",
-      quantity: "quantity",
+      quantity: "enter value",
       tokenId: "asset id",
       tokenType: "erc20"
     }

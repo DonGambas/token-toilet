@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
 import getWeb3 from '../../util/web3/getWeb3'
 import Toilet from '../../../build/contracts/Toilet.json'
-import { BrownContainer, Title, RegularText, TTButton, FlexColumnContainer, Link } from '../../styles';
+import { BrownContainer, Title, RegularText, TTButton, FlexColumnContainer, Link, Shaker } from '../../styles';
 
 
 
@@ -45,7 +45,7 @@ class FountainThrower extends Component {
 
     setTimeout(() => {
       this.setState({step:'success'});
-    }, 500)
+    }, 3000)
 
     const contract = new this.state.web3.eth.Contract( Toilet.abi, '0x254dffcd3277c0b1660f6d42efbb754edababc2b');
     contract.methods.getLoot().send({from: this.props.accounts[0]})
@@ -73,13 +73,25 @@ class FountainThrower extends Component {
       )
     } else if (this.state.step === "loading"){
       body = (
-        <RegularText style={{textAlign:'center'}}>Here's your surprise</RegularText>
+        <FlexColumnContainer>
+          <Title style={{textAlign:'center'}}>Here's your surprise!</Title>
+          <Shaker><img src="/assets/images/box.svg"  style={{height: '30vh'}}></img></Shaker>
+        </FlexColumnContainer>
       )
     } else if (this.state.step === "success"){
       body = (
-        <FlexColumnContainer style={{textAlign:'center'}}>
-          <RegularText>Here's your surprise</RegularText>
-          <RegularText>How about</RegularText>
+        <FlexColumnContainer>
+          <Title style={{textAlign:'center'}}>Here's your surprise!</Title>
+          <img src="/assets/images/toilet-paper.png"  style={{height: '10vh'}}></img>
+          <Regular-Text><b>Thanks for Flushing!</b></Regular-Text>
+          <div>
+            <RegularText style={{marginBottom: '0px'}}>How about:</RegularText>
+            <ul>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link>Throwing some more coins</Link></RegularText></li>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> Flushing some spoiled tokens in the <Link>Token Toilet</Link></RegularText></li>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link>Learning more about this project</Link></RegularText></li>
+            </ul>
+          </div>
         </FlexColumnContainer>
       )
     }

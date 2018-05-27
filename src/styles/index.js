@@ -8,6 +8,7 @@ import Link from './Link'
 import TTButton from './TTButton'
 import FlexColumnContainer from './FlexColumnContainer'
 import Spinner from './Spinner'
+import Shaker from './Shaker'
 
 export{
   MainContainer,
@@ -19,5 +20,6 @@ export{
   Link,
   TTButton,
   FlexColumnContainer,
-  Spinner
+  Spinner,
+  Shaker
 }

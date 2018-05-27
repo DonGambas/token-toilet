@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import {FormGroup, ControlLabel, FormControl, Button, FieldGroup } from 'react-bootstrap';
 import { ContractForm } from 'drizzle-react-components'
 import getWeb3 from '../../util/web3/getWeb3'
+import ERC721 from '../../../build/contracts/ERC721Basic.json'
+import ERC20 from '../../../build/contracts/ERC20Basic.json'
+
+
 
 class ToiletFlusher extends Component {
   constructor(props, context) {
@@ -43,14 +47,14 @@ class ToiletFlusher extends Component {
     }, 500)
 
     /*if(this.state.tokenType === "erc20"){
-      const contract = new this.state.web3.eth.Contract( abi, contract);
+      const contract = new this.state.web3.eth.Contract( ERC20.abi, contract);
       contract.methods.approve( address,this.state.quantity).send({from: this.props.accounts[0]})
         .then(receipt => {
 
         });
 
     } else if(this.state.tokenType === "erc721"){
-      const contract = new this.state.web3.eth.Contract( abi, contract);
+      const contract = new this.state.web3.eth.Contract( ERC721.abi, contract);
       contract.methods.approve(address, this.state.quantity).send({from: this.props.accounts[0]})
         .then(receipt => {
 

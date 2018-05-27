@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {Button } from 'react-bootstrap';
 import { ContractForm } from 'drizzle-react-components'
 import styled from "styled-components";
+import { MainContainer, BlueContainer, BrownContainer} from '../../styles'
+
 
 class Fountain extends Component {
   constructor(props, { authData }) {
@@ -31,32 +33,7 @@ class Fountain extends Component {
   }
 }
 
-const MainContainer = styled.div `
-  background-color: #AFDEF8;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  align-items: center;
-`;
-const BlueContainer = styled.div `
-  background-color: #AFDEF8;
-  flex: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  `;
-  const BrownContainer = styled.div `
-  background-color: #9A7E5C;
-  flex: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 10px;
-`;
+
 const FountainImage = styled.img `
   position: absolute;
   bottom: 0;

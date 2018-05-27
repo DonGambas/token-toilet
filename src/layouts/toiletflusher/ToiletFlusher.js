@@ -6,6 +6,7 @@ import ERC20 from '../../../build/contracts/ERC20Basic.json'
 import { MainContainer, BrownContainer, Title, RegularText, TTButton, FlexColumnContainer, Link } from '../../styles';
 
 
+
 class ToiletFlusher extends Component {
   constructor(props, context) {
     super(props)
@@ -20,6 +21,7 @@ class ToiletFlusher extends Component {
   }
 
   componentWillMount() {
+
     getWeb3
     .then(results => {
       this.setState({
@@ -29,6 +31,7 @@ class ToiletFlusher extends Component {
     .catch(() => {
       console.log('Error finding web3.')
     })
+
   }
 
 
@@ -49,21 +52,20 @@ class ToiletFlusher extends Component {
       const contract = new this.state.web3.eth.Contract( ERC20.abi, contract);
       contract.methods.approve( address,this.state.quantity).send({from: this.props.accounts[0]})
         .then(receipt => {
-
+          this.setState({step:'success'});
         });
 
     } else if(this.state.tokenType === "erc721"){
       const contract = new this.state.web3.eth.Contract( ERC721.abi, contract);
       contract.methods.approve(address, this.state.quantity).send({from: this.props.accounts[0]})
         .then(receipt => {
-
+          this.setState({step:'success'});
         });
     }*/
   }
 
   render() {
     let body;
-
     if(this.state.step === 'start'){
       body = (
         <form style={{height:'100%', margin: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly'}}>

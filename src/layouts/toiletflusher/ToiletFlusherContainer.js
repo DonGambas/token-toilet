@@ -7,9 +7,9 @@ const mapStateToProps = state => {
     accounts: state.accounts,
     Toilet: state.contracts.Toilet,
     drizzleStatus: state.drizzleStatus,
+    tokens: state.app.tokens
   }
 }
 
-const ToiletFlusherContainer = drizzleConnect(ToiletFlusher, mapStateToProps);
 
-export default ToiletFlusherContainer
+export default drizzleConnect(ToiletFlusher, mapStateToProps)

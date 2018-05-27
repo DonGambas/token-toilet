@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 const TTButton = styled.button `
   background-color: #FFD966;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: center;

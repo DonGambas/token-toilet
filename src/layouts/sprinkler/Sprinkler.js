@@ -6,7 +6,8 @@ import {
   RegularText,
   TTButton,
   Title,
-  LandingImage
+  LandingImage,
+  LeftArrow
 } from '../../styles';
 import {Link} from 'react-router';
 
@@ -37,6 +38,7 @@ class Sprinkler extends Component {
             {/* <ContractForm contract="Toilet" method="getSurprise"/> */}
             <TTButton><Link to="/toiletflusher" style={{display: 'block', height: '100%', textDecoration:'none', color: 'black'}}>Learn More</Link></TTButton>
         </BrownContainer>
+        <LeftArrow><Title style={{transform: 'rotate(225deg)', fontSize:'66px'}}><Link to="/fountain">&#8989;</Link></Title></LeftArrow>
       </MainContainer>
     )
   }

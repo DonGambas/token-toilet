@@ -104,7 +104,7 @@ class ToiletFlusher extends Component {
     } else if (this.state.step === "loading"){
       body = (
         <FlexColumnContainer>
-          <Title>Flushing...</Title>
+          <Title style={{fontFamily: 'sans-serif'}}>Flushing...</Title>
           <Spinner><img src="/assets/images/flush.svg"  style={{height: '30vh'}}></img></Spinner>
         </FlexColumnContainer>
       )
@@ -112,12 +112,12 @@ class ToiletFlusher extends Component {
       body = (
         <FlexColumnContainer>
           <img src="/assets/images/toilet-paper.png"  style={{height: '30vh'}}></img>
-          <Title>Thanks for Flushing!</Title>
+          <Title style={{fontFamily: 'sans-serif', fontSize:'32px', margin:'30px 0'}}>Thanks for Flushing!</Title>
           <div>
             <RegularText style={{marginBottom: '0px'}}>How about:</RegularText>
             <ul>
               <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link to="/toilet">Flushing some more stuff</Link></RegularText></li>
-              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> Throwing some DAI in the <Link  to="/fountain">Token Fountain</Link></RegularText></li>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> Throw some DAI in the <Link  to="/fountain">Fountain</Link></RegularText></li>
               <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link to="/sprinkler">Learning more about this project</Link></RegularText></li>
             </ul>
           </div>
@@ -127,7 +127,7 @@ class ToiletFlusher extends Component {
 
     return(
       <MainContainer>
-        <BrownContainer style={{flex:'1'}}>
+        <BrownContainer style={{flex:'1', justifyContent: 'space-evenly'}}>
           <Title style={{textAlign:'center'}}>Dump Some Tokens</Title>
           <RegularText style={{textAlign:'center'}}>ERC-20 or ERC-721</RegularText>
         </BrownContainer>

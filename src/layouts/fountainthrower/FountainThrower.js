@@ -63,7 +63,7 @@ class FountainThrower extends Component {
       <FlexColumnContainer style={{textAlign:'center', justifyContent:'space-around', height:'100%'}}>
         <RegularText>Great! Your browser is <Link href="https://www.reddit.com/r/ethereum/comments/87wx66/growing_list_of_web3_mobile_browsers/">Web3</Link> enabled and you have DAI in your wallet.</RegularText>
         <img src="/assets/images/box.svg"  style={{height: '30vh'}}></img>
-        <RegularText>You'll get a surprise ERC-20 or ERC-721 token. It's a magic fountain so you don't know exactly what you'll get </RegularText>
+        <RegularText>You'll get a surprise ERC-20 or ERC-721 token. It's a magic fountain! </RegularText>
         <FlexColumnContainer>
           <RegularText>All proceeds <Link href="https://giveth.io/">go to charity</Link></RegularText>
           <TTButton onClick={this.handleSubmit} style={{marginTop:'10px'}}>Throw 5 DAI</TTButton>
@@ -75,21 +75,21 @@ class FountainThrower extends Component {
     } else if (this.state.step === "loading"){
       body = (
         <FlexColumnContainer>
-          <Title style={{textAlign:'center'}}>Here's your surprise!</Title>
+          <Title style={{textAlign:'center', fontFamily: 'sans-serif', margin: '20px', fontSize: '36px'}}>Here's your surprise!</Title>
           <Shaker><img src="/assets/images/box.svg"  style={{height: '30vh'}}></img></Shaker>
         </FlexColumnContainer>
       )
     } else if (this.state.step === "success"){
       body = (
-        <FlexColumnContainer>
-          <Title style={{textAlign:'center'}}>Here's your surprise!</Title>
-          <img src="/assets/images/toilet-paper.png"  style={{height: '10vh'}}></img>
-          <Regular-Text><b>Thanks for Flushing!</b></Regular-Text>
+        <FlexColumnContainer style={{ justifyContent:'space-between', height:'100%'}}>
+          <Title style={{textAlign:'center', fontFamily: 'sans-serif', margin: '20px', fontSize: '36px'}}>Here's your surprise!</Title>
+          <img src="/assets/images/kitty-eth.svg"  style={{height: '25vh'}}></img>
+          <Regular-Text style={{fontSize: '24px'}}><b>Cryptokitty #452252!</b></Regular-Text>
           <div>
             <RegularText style={{marginBottom: '0px'}}>How about:</RegularText>
             <ul>
               <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link to="/fountain">Throwing some more coins</Link></RegularText></li>
-              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> Flushing some spoiled tokens in the <Link to="/toilet">Token Toilet</Link></RegularText></li>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> Flush spoiled tokens in the <Link to="/toilet">Toilet</Link></RegularText></li>
               <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link to="/sprinkler">Learning more about this project</Link></RegularText></li>
             </ul>
           </div>
@@ -99,9 +99,9 @@ class FountainThrower extends Component {
 
     return(
       <main style={{display: 'flex', flexDirection: 'column', height: '100vh'}} className="main-container">
-        <BrownContainer style={{flex:'1'}}>
+        <BrownContainer style={{flex:'1', justifyContent: 'space-evenly'}}>
           <Title style={{textAlign:'center'}}>Throw a Coin</Title>
-          <RegularText style={{textAlign:'center'}}>The fountain only takes DAI (why?)</RegularText>
+          <RegularText style={{textAlign:'center'}}>The fountain only takes DAI (<Link style={{color:'white', textDecoration: 'underline'}} to="/sprinkler">why?</Link>)</RegularText>
         </BrownContainer>
         <FlexColumnContainer style={{flex:'4', padding: '20px'}}>
           {body}

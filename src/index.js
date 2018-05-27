@@ -25,8 +25,8 @@ ReactDOM.render((
     <DrizzleProvider options={drizzleOptions} store={store}>
       <LoadingContainer>
         <Router history={history}>
-          <Route path="/" component={App}>
-            <IndexRoute component={HomeContainer} />
+          <Route exact path="/" component={App}>
+            <IndexRoute component={Toilet} />
             <Route path="toilet" component={Toilet} />
             <Route path="toiletflusher" component={ToiletFlusherContainer} />
             <Route path="fountain" component={FountainContainer} />

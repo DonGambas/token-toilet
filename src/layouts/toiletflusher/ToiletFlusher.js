@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {FormGroup, ControlLabel, FormControl, Button, FieldGroup } from 'react-bootstrap';
 import { ContractForm } from 'drizzle-react-components'
+import getWeb3 from '../../util/web3/getWeb3'
 
 class ToiletFlusher extends Component {
   constructor(props, context) {
@@ -11,13 +12,26 @@ class ToiletFlusher extends Component {
       showButton: true,
       contractAddress: "contract address",
       quantity: "enter value",
-      tokenId: "asset id",
-      tokenType: "erc20"
+      tokenType: "erc20",
+      web3: null
     }
     this.toggleERC20 = this.toggleERC20.bind(this);
     this.toggleERC721 = this.toggleERC721.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
+  componentWillMount() {
+
+  getWeb3
+  .then(results => {
+    this.setState({
+      web3: results.web3
+    })
+  })
+  .catch(() => {
+    console.log('Error finding web3.')
+  })
+}
 
   toggleERC20() {
     this.setState({
@@ -40,8 +54,26 @@ class ToiletFlusher extends Component {
     this.setState({[name]: event.target.value});
   }
 
+  handleSubmit(){
+    if(this.state.tokenType === "erc20"){
+      const contract = new this.state.web3.eth.Contract(/* abi, contract*/);
+      contract.methods.approve(/* address, */ this.state.quantity).send({from: this.props.accounts[0]})
+        .then(receipt => {
+
+        });
+
+    } else if(this.state.tokenType === "erc721"){
+      const contract = new this.state.web3.eth.Contract(/* abi, contract*/);
+      contract.methods.approve(/* address,*/ this.state.quantity).send({from: this.props.accounts[0]})
+        .then(receipt => {
+
+        });
+    }
+  }
+
   render() {
-    console.log(this.state.tokenType)
+    if(this.state.web3){
+    }
     return(
       <main className="container">
         <div className="pure-g">
@@ -80,9 +112,7 @@ class ToiletFlusher extends Component {
                     onChange={this.handleChange}
                   />
                 </FormGroup>
-                <Button onClick={this.toggleERC721} style={{marginTop:'10px'}}> Flush That Sh*t</Button>
-
-
+                <Button onClick={this.handleSubmit} style={{marginTop:'10px'}}> Flush That Sh*t</Button>
               </form>
               </div>
             }

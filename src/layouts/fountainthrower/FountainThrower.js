@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {FormGroup, ControlLabel, FormControl, Button, FieldGroup } from 'react-bootstrap';
 import getWeb3 from '../../util/web3/getWeb3'
 import Toilet from '../../../build/contracts/Toilet.json'
+import { BrownContainer, Title, RegularText, TTButton, FlexColumnContainer, Link } from '../../styles';
 
 
 
@@ -58,36 +59,40 @@ class FountainThrower extends Component {
 
     if(this.state.step === 'start'){
       body = (
-      <div>
-        <p>You'll get a surprise ERC-20 or ERC-721 token. It's a magic fountain so you don't know exactly what you'll get </p>
-        <Button onClick={this.handleSubmit} style={{marginTop:'10px'}}>Throw 5 DAI</Button>
-      </div>
+      <FlexColumnContainer style={{textAlign:'center', justifyContent:'space-around', height:'100%'}}>
+        <RegularText>Great! Your browser is web3 enabled and you have DAI in your wallet.</RegularText>
+        <img src="/assets/images/box.svg"  style={{height: '30vh'}}></img>
+        <RegularText>You'll get a surprise ERC-20 or ERC-721 token. It's a magic fountain so you don't know exactly what you'll get </RegularText>
+        <FlexColumnContainer>
+          <RegularText>All proceeds <Link>go to charity</Link></RegularText>
+          <TTButton onClick={this.handleSubmit} style={{marginTop:'10px'}}>Throw 5 DAI</TTButton>
+          <RegularText><Link>or throw directly from your wallet</Link></RegularText>
+        </FlexColumnContainer>
+      </FlexColumnContainer>
 
       )
     } else if (this.state.step === "loading"){
       body = (
-        <p>Here's your surprise</p>
+        <RegularText style={{textAlign:'center'}}>Here's your surprise</RegularText>
       )
     } else if (this.state.step === "success"){
       body = (
-        <div>
-          <p>Here's your surprise</p>
-          <p>How about</p>
-        </div>
+        <FlexColumnContainer style={{textAlign:'center'}}>
+          <RegularText>Here's your surprise</RegularText>
+          <RegularText>How about</RegularText>
+        </FlexColumnContainer>
       )
     }
 
     return(
-      <main className="container">
-        <div className="pure-g">
-          <div className="pure-u-1-1">
-            <h1 style={{textAlign:'center'}}>Throw a Coin</h1>
-            <p style={{textAlign:'center'}}>The fountain only takes DAI (why?)</p>
-              <div style={{display:'flex', flexDirection:'column', justifyContent: 'center'}}>
-              {body}
-              </div>
-          </div>
-        </div>
+      <main style={{display: 'flex', flexDirection: 'column', height: '100vh'}} className="main-container">
+        <BrownContainer style={{flex:'1'}}>
+          <Title style={{textAlign:'center'}}>Throw a Coin</Title>
+          <RegularText style={{textAlign:'center'}}>The fountain only takes DAI (why?)</RegularText>
+        </BrownContainer>
+        <FlexColumnContainer style={{flex:'4', padding: '20px'}}>
+          {body}
+        </FlexColumnContainer>
       </main>
     )
   }

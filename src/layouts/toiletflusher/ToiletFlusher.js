@@ -4,6 +4,7 @@ import { ContractForm } from 'drizzle-react-components'
 import getWeb3 from '../../util/web3/getWeb3'
 import ERC721 from '../../../build/contracts/ERC721Basic.json'
 import ERC20 from '../../../build/contracts/ERC20Basic.json'
+import { MainContainer, BrownContainer, Title, RegularText, TTButton, FlexColumnContainer, Link } from '../../styles';
 
 
 class ToiletFlusher extends Component {
@@ -66,7 +67,8 @@ class ToiletFlusher extends Component {
 
     if(this.state.step === 'start'){
       body = (
-        <form>
+        <form style={{height:'100%', margin: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly'}}>
+        <RegularText style={{textAlign:'center'}}>Great! Your browser is Web3 enabled. What are you dumping?</RegularText>
           <FormGroup>
           <ControlLabel>Token Type</ControlLabel>
           <FormControl componentClass="select" placeholder="select" onChange={this.handleChange} name="tokenType" label="token type">
@@ -92,7 +94,9 @@ class ToiletFlusher extends Component {
             onChange={this.handleChange}
           />
         </FormGroup>
-        <Button onClick={this.handleSubmit} style={{marginTop:'10px'}}> Flush That Sh*t</Button>
+        <TTButton onClick={this.handleSubmit} style={{marginTop:'10px', alignSelf: 'center'}}> Flush That Sh*t</TTButton>
+        <RegularText style={{marginTop:'10px', alignSelf: 'center'}}><Link>or throw directly from your wallet</Link></RegularText>
+
       </form>
       )
     } else if (this.state.step === "loading"){
@@ -106,17 +110,15 @@ class ToiletFlusher extends Component {
     }
 
     return(
-      <main className="container">
-        <div className="pure-g">
-          <div className="pure-u-1-1">
-            <h1 style={{textAlign:'center'}}>Dump Some Tokens</h1>
-            <p style={{textAlign:'center'}}>ERC-20 or ERC-721</p>
-              <div style={{display:'flex', flexDirection:'column', justifyContent: 'center'}}>
-              {body}
-              </div>
-          </div>
-        </div>
-      </main>
+      <MainContainer>
+        <BrownContainer style={{flex:'1'}}>
+          <Title style={{textAlign:'center'}}>Dump Some Tokens</Title>
+          <RegularText style={{textAlign:'center'}}>ERC-20 or ERC-721</RegularText>
+        </BrownContainer>
+        <FlexColumnContainer style={{flex:'4', padding: '20px', width:'100%'}}>
+          {body}
+        </FlexColumnContainer>
+      </MainContainer>
     )
   }
 }

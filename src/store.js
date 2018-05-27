@@ -7,6 +7,8 @@ import rootSaga from './rootSaga'
 import createSagaMiddleware from 'redux-saga'
 import { generateContractsInitialState } from 'drizzle'
 import drizzleOptions from './drizzleOptions'
+import { promiseMiddleware } from './middleware';
+
 
 // Redux DevTools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -25,7 +27,8 @@ const store = createStore(
     applyMiddleware(
       thunkMiddleware,
       routingMiddleware,
-      sagaMiddleware
+      promiseMiddleware,
+      sagaMiddleware,
     )
   )
 )

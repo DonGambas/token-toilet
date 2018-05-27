@@ -1,28 +1,35 @@
 pragma solidity ^0.4.23;
 
 //import "zos-lib/contracts/migrations/Migratable.sol";
-//import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "openzeppelin-solidity/contracts/ReentrancyGuard.sol";
 
 contract ERC20Interface {
     function balanceOf(address who) public view returns (uint256);
-    function transferFrom(address from, address to, uint256 value) public returns (bool);
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool);
+    function transfer(address _to, uint256 _value) public returns (bool) ;
 }
 
 contract ERC721Interface {
     function transferFrom(address _from, address _to, uint256 _tokenId) public;
     function ownerOf(uint256 _tokenId) public view returns (address _owner);
+    function transfer(address _to, uint256 _tokenId) external;
 }
 
-contract Toilet is ReentrancyGuard {
+contract Toilet is ReentrancyGuard, Ownable {
 
   using SafeMath for uint256;
 
   uint256 public x;
-  uint NONFUNGIBLE_PRIZE_COUNT = 2;
-  uint FUNGIBLE_PRIZE_COUNT = 1;
+  uint NONFUNGIBLE_PRIZE_COUNT = 1; //2
+  uint FUNGIBLE_PRIZE_COUNT = 1; //1
+  uint256 public NFTAmount = 0;
+  uint256 public FTAmount = 0;
+  uint256 BASE_PRICE = 5000000000000000;
 
+  address serverAddress;
+  
   struct Prize {
     address contractAddress;
     uint256 value;
@@ -36,10 +43,22 @@ contract Toilet is ReentrancyGuard {
   event FungibleTokenDeposit(address sender, address tokenContract, uint256 value);
   event NonFungibleTokenDeposit(address sender, address tokenContract, uint256 tokenId);
 
-  event LootBoxOpen(
-    bytes32 id,
-    Prize[3] prizes
+  event LootBoxOpenNFT(
+    uint256 id,
+    address contractAddress,
+    uint256 value,
+    address receiver,
+    uint256 timestamp
   );
+
+   event LootBoxOpenFT(
+    uint256 id,
+    address contractAddress,
+    uint256 value,
+    address receiver,
+    uint256 timestamp
+  );
+
 
   /**
   * @dev initialize function for zeppelin os
@@ -59,14 +78,16 @@ contract Toilet is ReentrancyGuard {
     /**
   * @dev This function can be called to transfer an ERC721 token to this contract address
   */
-  function transferERC721(address nonFungibleAddress, uint256 assetId) external {
+  function transferERC721(address owner, address nonFungibleAddress, uint256 assetId) external {
 
-    ERC721Interface nonFungibleToken = ERC721Interface(nonFungibleAddress);
-    require (nonFungibleToken.ownerOf(assetId) == msg.sender);
-    nonFungibleToken.transferFrom(msg.sender, address(this), assetId);
+    ERC721Interface nonFungibleToken = ERC721Interface(nonFungibleAddress);    
+    nonFungibleToken.transferFrom(owner, address(this), assetId);
+    require (nonFungibleToken.ownerOf(assetId) == address(this));
 
     nonFungibleOwnings[nonFungibleAddress].push(assetId);
     nonFungibleOwningKeys.push(nonFungibleAddress);
+
+    NFTAmount++;
 
     emit NonFungibleTokenDeposit(msg.sender, nonFungibleAddress, assetId);
   }
@@ -74,77 +95,134 @@ contract Toilet is ReentrancyGuard {
   /**
   * @dev This function can be called to transfer an ERC721 token to this contract address
   */
-  function transferERC20(address fungibleAddress, uint256 value) external {
+  function transferERC20(address owner, address fungibleAddress, uint256 value) external {
 
-    ERC20Interface fungibleToken = ERC20Interface(fungibleAddress);
-    require (fungibleToken.balanceOf(msg.sender) >= value);
-    fungibleToken.transferFrom(msg.sender, address(this), value);
-
-    fungibleOwnings[fungibleAddress] = value;
+    ERC20Interface fungibleToken = ERC20Interface(fungibleAddress); 
+    uint256 oldBalance = fungibleToken.balanceOf(address(this));   
+    fungibleToken.transferFrom(owner, address(this), value);
+    require (fungibleToken.balanceOf(address(this)) > oldBalance);
+    
+    fungibleOwnings[fungibleAddress] += value;
     fungibleOwningKeys.push(fungibleAddress);
+
+    FTAmount+=value;
 
     emit FungibleTokenDeposit(msg.sender, fungibleAddress, value);
   }
 
-  function _fungibleSend() internal returns(Prize p) {
+  function _fungibleSend(address addr, uint256 quantity, address receiver) internal returns(Prize p) {
 
-    address tokenAddress = fungibleOwningKeys[_random() % fungibleOwningKeys.length];
-    uint256 balance = fungibleOwnings[tokenAddress];
-    require (balance > 0);
+    fungibleOwnings[addr] = fungibleOwnings[addr].sub(quantity);
 
-    uint256 quantity = _random() % balance;
-    fungibleOwnings[tokenAddress].sub(quantity);
-
-    ERC20Interface(tokenAddress).transferFrom(address(this), msg.sender, quantity);
-
+    ERC20Interface i = ERC20Interface(addr);
+    uint256 receiverBalance = i.balanceOf(receiver);
+    i.transfer(receiver, quantity);
+    require (i.balanceOf(receiver) > receiverBalance);
+    
     p = Prize({
-      contractAddress: tokenAddress,
+      contractAddress: addr,
       value: quantity
     });
 
+    FTAmount-=quantity;
+
   }
+  
 
-  function _nonFungibleSend() internal returns(Prize p) {
+  function _nonFungibleSend(address addr, address receiver) internal returns(Prize p) {
 
-    address assetAddress = nonFungibleOwningKeys[_random() % nonFungibleOwningKeys.length];
-    uint256[] storage assetIds = nonFungibleOwnings[assetAddress];
-    require (assetIds.length > 0);
+    uint256[] storage assetIds = nonFungibleOwnings[addr];
 
     uint256 assetId = assetIds[0];
     assetIds[0] = assetIds[assetIds.length - 1];
     assetIds.length--;
 
-    ERC721Interface(assetAddress).transferFrom(address(this), msg.sender, assetId);
-
+    ERC721Interface i = ERC721Interface(addr);
+    i.transfer(receiver, assetId);
+    
+    require (i.ownerOf(assetId) == receiver);
+    
     p = Prize({
-      contractAddress: assetAddress,
+      contractAddress: addr,
       value: assetId
     });
 
+    NFTAmount--;
+  
   }
 
+  function getLoot() external nonReentrant payable{
 
-  //nonreentran openzepplin
-  function getLoot() external nonReentrant {
-
-    bytes32 boxId = keccak256(
+    require (NFTAmount > 0);
+    require (FTAmount > 0);
+    require (msg.value >= BASE_PRICE);
+    
+    
+    uint256 boxId = uint256(keccak256(
       block.timestamp,
       msg.sender
-    );
+    ));
 
-    Prize[3] memory prizes;
-    uint8 counter = 0;
+    Prize memory prize;
 
-    for (uint i = 0; i < NONFUNGIBLE_PRIZE_COUNT; i++) {
-      prizes[counter++] = _nonFungibleSend();
+    uint256 r = _random() % 2;
+    uint256 r2;
+    uint256 position;
+    bool flag;
+
+    if(r == 0){
+      r2 = _random() % nonFungibleOwningKeys.length;
+      position = r2;
+      flag = false;
+      while(!flag){
+        address assetAddress = nonFungibleOwningKeys[position % nonFungibleOwningKeys.length];
+        flag = nonFungibleOwnings[assetAddress].length != 0;
+        position++;
+      }
+      prize = _nonFungibleSend(assetAddress, msg.sender);
+      emit LootBoxOpenNFT(boxId, prize.contractAddress, prize.value, msg.sender, now);
+
+    } else {
+      
+      r2 = _random() % fungibleOwningKeys.length;
+      position = r2;
+      flag = false;
+      while(!flag){
+        address tokenAddress = fungibleOwningKeys[position % fungibleOwningKeys.length];
+        uint256 balance = fungibleOwnings[tokenAddress];
+        uint256 quantity = (_random() % balance) + 1;
+
+        flag = fungibleOwnings[tokenAddress] > 0;
+        position++;
+      }
+      prize = _fungibleSend(tokenAddress, quantity, msg.sender);
+      emit LootBoxOpenFT(boxId, prize.contractAddress, prize.value, msg.sender, now);
+
     }
+    
+    serverAddress.transfer(msg.value);
+    //chupar los dai
 
-    for (i = 0; i < FUNGIBLE_PRIZE_COUNT; i++) {
-      prizes[counter++] = _fungibleSend();
-    }
-
-    emit LootBoxOpen(boxId, prizes);
   }
+
+  function withdrawEverything () external onlyOwner {
+    
+    for(uint i = 0; i < nonFungibleOwningKeys.length; i++){
+      uint256[] memory arr = nonFungibleOwnings[nonFungibleOwningKeys[i]];
+      for (uint j = 0; j < arr.length; j++){
+        ERC721Interface t20 = ERC721Interface(nonFungibleOwningKeys[i]);
+        t20.transfer(owner, arr[j]);
+      }
+    }
+
+    for(i = 0; i < fungibleOwningKeys.length; i++){
+      ERC20Interface t721 = ERC20Interface(fungibleOwningKeys[i]);
+      t721.transfer(owner, fungibleOwnings[fungibleOwningKeys[i]]);
+    }
+
+ 
+  }
+  
 
 
 }

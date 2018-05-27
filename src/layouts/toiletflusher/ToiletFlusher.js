@@ -4,7 +4,7 @@ import { ContractForm } from 'drizzle-react-components'
 import getWeb3 from '../../util/web3/getWeb3'
 import ERC721 from '../../../build/contracts/ERC721Basic.json'
 import ERC20 from '../../../build/contracts/ERC20Basic.json'
-
+import { MainContainer, BlueContainer, BrownContainer} from '../../styles'
 
 
 class ToiletFlusher extends Component {

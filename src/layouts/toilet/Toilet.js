@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router'
 import { Button } from 'react-bootstrap';
+import { MainContainer, BlueContainer, BrownContainer} from '../../styles'
+
 
 class Toilet extends Component {
   constructor(props, context) {
@@ -14,7 +16,7 @@ class Toilet extends Component {
 
   render() {
     return(
-      <main className="container">
+      <MainContainer>
         <div className="pure-g">
           <div className="pure-u-1-1">
             <h1 style={{textAlign:'center'}}>The Token Toilet</h1>
@@ -23,7 +25,7 @@ class Toilet extends Component {
             <Link to="/toiletflusher">Dump Some Tokens</Link>
           </div>
         </div>
-      </main>
+      </MainContainer>
     )
   }
 }

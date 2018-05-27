@@ -10,6 +10,7 @@ import HomeContainer from './layouts/home/HomeContainer'
 import Toilet from './layouts/toilet/Toilet'
 import ToiletFlusherContainer from './layouts/toiletflusher/ToiletFlusherContainer'
 import FountainContainer from './layouts/fountain/FountainContainer'
+import FountainThrowerContainer from './layouts/fountainthrower/FountainThrowerContainer'
 import SprinklerContainer from './layouts/sprinkler/Sprinkler'
 
 import { LoadingContainer } from 'drizzle-react-components'
@@ -29,6 +30,7 @@ ReactDOM.render((
             <Route path="toilet" component={Toilet} />
             <Route path="toiletflusher" component={ToiletFlusherContainer} />
             <Route path="fountain" component={FountainContainer} />
+            <Route path="fountainthrower" component={FountainThrowerContainer} />
             <Route path="sprinkler" component={SprinklerContainer} />
           </Route>
         </Router>

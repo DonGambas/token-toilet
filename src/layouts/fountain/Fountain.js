@@ -3,7 +3,7 @@ import {Button } from 'react-bootstrap';
 import { ContractForm } from 'drizzle-react-components'
 import {Link} from 'react-router'
 import styled from "styled-components";
-import { MainContainer, BlueContainer, BrownContainer, Title, RegularText, TTButton} from '../../styles'
+import { MainContainer, BlueContainer, BrownContainer, Title, RegularText, TTButton, LandingImage} from '../../styles'
 
 
 class Fountain extends Component {
@@ -28,7 +28,6 @@ class Fountain extends Component {
             <RegularText style={{textAlign:'center'}}>Throw 5 DAI into the Token Fountain and receive surprise tokens in return. Kitties, Dentacoin, or whatever the RNG decides.<b>Who knows what the future holds?</b></RegularText>
             {/* <ContractForm contract="Toilet" method="getSurprise"/> */}
             <TTButton><Link to="/fountainthrower" style={{display: 'block', height: '100%', textDecoration:'none', color: 'black'}}> Submit</Link></TTButton>
-            <a style={{ textAlign: 'center', color: 'white', textDecoration: 'underline'}}>Wait, what?</a>
         </BrownContainer>
       </main>
     )
@@ -41,11 +40,5 @@ const FountainImage = styled.img `
   bottom: 0;
   transform: translate(0, 100%);
 `;
-const LandingImage = styled.img `
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0;
-  object-fit: cover;
-`;
+
 export default Fountain

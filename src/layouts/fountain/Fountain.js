@@ -25,7 +25,7 @@ class Fountain extends Component {
           <LandingImage src="/assets/images/fountain.svg"></LandingImage>
         </div>
         <BrownContainer>
-            <RegularText style={{textAlign:'center'}}>Throw 5 DAI into the Token Fountain and receive surprise tokens in return. Kitties, Dentacoin, or whatever the RNG decides.<b>Who knows what the future holds?</b></RegularText>
+            <RegularText style={{textAlign:'center'}}>Throw 5 DAI into the Token Fountain and receive surprise tokens in return. Kitties, Dentacoin, or whatever the RNG decides. <b>Who knows what the future holds?</b></RegularText>
             {/* <ContractForm contract="Toilet" method="getSurprise"/> */}
             <TTButton><Link to="/fountainthrower" style={{display: 'block', height: '100%', textDecoration:'none', color: 'black'}}> Submit</Link></TTButton>
         </BrownContainer>

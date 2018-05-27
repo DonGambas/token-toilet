@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-
 const BrownContainer = styled.div `
 background-color: #9A7E5C;
 flex: 5;
@@ -10,7 +9,7 @@ align-items: center;
 justify-content: center;
 text-align: center;
 padding: 0 10px;
-color: white;
+width:100%;
 `;
 
 export default BrownContainer

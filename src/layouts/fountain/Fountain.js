@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Button } from 'react-bootstrap';
 import { ContractForm } from 'drizzle-react-components'
 import styled from "styled-components";
-import { MainContainer, BlueContainer, BrownContainer} from '../../styles'
+import { MainContainer, BlueContainer, BrownContainer, Title, RegularText} from '../../styles'
 
 
 class Fountain extends Component {
@@ -15,8 +15,8 @@ class Fountain extends Component {
     return(
       <main style={{display: 'flex', flexDirection: 'column', height: '100vh'}} className="main-container">
         <BlueContainer>
-          <h1 style={{textAlign:'center'}}>The Token Fountain</h1>
-          <p style={{textAlign:'center'}}>Throw a coin, make a wis-onlyh!</p>
+          <Title style={{textAlign:'center'}}>The Token Fountain</Title>
+          <RegularText style={{textAlign:'center'}}>Throw a coin, make a wish-only!</RegularText>
           {/* <img src="/assets/images/fountain-only.svg"  style={{position:'absolute', bottom: '0'}}></img> */}
         </BlueContainer>
         <div style={{flex:'2'}}></div>
@@ -24,7 +24,7 @@ class Fountain extends Component {
           <LandingImage src="/assets/images/fountain.svg"></LandingImage>
         </div>
         <BrownContainer>
-            <p style={{textAlign:'center', color: 'white'}}>Throw 5 DAI into the Token Fountain and receive surprise tokens in return. Kitties, Dentacoin, or whatever the RNG decides.<b>Who knows what the future holds?</b></p>
+            <RegularText style={{textAlign:'center', color: 'white'}}>Throw 5 DAI into the Token Fountain and receive surprise tokens in return. Kitties, Dentacoin, or whatever the RNG decides.<b>Who knows what the future holds?</b></RegularText>
             <ContractForm contract="Toilet" method="getSurprise"/>
             <a style={{ textAlign: 'center', color: 'white' }}>Wait, what?</a>
         </BrownContainer>

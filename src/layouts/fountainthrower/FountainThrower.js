@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {FormGroup, ControlLabel, FormControl, Button, FieldGroup } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import getWeb3 from '../../util/web3/getWeb3'
 import Toilet from '../../../build/contracts/Toilet.json'
 

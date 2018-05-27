@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import {FormGroup, ControlLabel, FormControl, Button, FieldGroup } from 'react-bootstrap';
-import { ContractForm } from 'drizzle-react-components'
+import {FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import getWeb3 from '../../util/web3/getWeb3'
 import ERC721 from '../../../build/contracts/ERC721Basic.json'
 import ERC20 from '../../../build/contracts/ERC20Basic.json'

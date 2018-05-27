@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
-import getWeb3 from '../../util/web3/getWeb3'
+import getWeb3 from '../../util/web3/getWeb3Instance'
 import {Link} from 'react-router'
 import Toilet from '../../../build/contracts/Toilet.json'
 import { BrownContainer, Title, RegularText, TTButton, FlexColumnContainer, Shaker } from '../../styles';
@@ -25,7 +25,7 @@ class FountainThrower extends Component {
     getWeb3
     .then(results => {
       this.setState({
-        web3: results.payload.web3Instance
+        web3: results.web3Instance
       })
     })
     .catch(() => {

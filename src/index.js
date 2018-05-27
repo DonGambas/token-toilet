@@ -18,6 +18,7 @@ import { LoadingContainer } from 'drizzle-react-components'
 import store from './store'
 import drizzleOptions from './drizzleOptions'
 
+
 // Initialize react-router-redux.
 const history = syncHistoryWithStore(browserHistory, store)
 
@@ -25,8 +26,8 @@ ReactDOM.render((
     <DrizzleProvider options={drizzleOptions} store={store}>
       <LoadingContainer>
         <Router history={history}>
-          <Route exact path="/" component={App}>
-            <IndexRoute component={Toilet} />
+          <Route path="/" component={App}>
+            <IndexRoute component={HomeContainer} />
             <Route path="toilet" component={Toilet} />
             <Route path="toiletflusher" component={ToiletFlusherContainer} />
             <Route path="fountain" component={FountainContainer} />

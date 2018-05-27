@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
-import getWeb3 from '../../util/web3/getWeb3'
+import getWeb3 from '../../util/web3/getWeb3Instance'
 import ERC721 from '../../../build/contracts/ERC721Basic.json'
 import ERC20 from '../../../build/contracts/ERC20Basic.json'
 import {Link} from 'react-router'
@@ -22,17 +22,15 @@ class ToiletFlusher extends Component {
   }
 
   componentWillMount() {
-
     getWeb3
     .then(results => {
       this.setState({
-        web3: results.payload.web3Instance
+        web3: results.web3Instance
       })
     })
     .catch(() => {
       console.log('Error finding web3.')
     })
-
   }
 
 

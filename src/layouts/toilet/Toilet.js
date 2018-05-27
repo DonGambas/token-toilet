@@ -30,7 +30,7 @@ class Toilet extends Component {
             <RegularText style={{textAlign:'center'}}> Pesky airdrops taking over your wallet? Your CryptoKitty won't purr? Is that DAO token balance still triggering your PTSD?  We have the solution!</RegularText>
             {/* <ContractForm contract="Toilet" method="getSurprise"/> */}
             <TTButton><Link to="/toiletflusher" style={{display: 'block', height: '100%', textDecoration:'none', color: 'black'}}> Dump Some Tokens</Link></TTButton>
-            <a style={{ textAlign: 'center', color: 'white', textDecoration: 'underline'}}>Wait, what?</a>
+            <Link to="/sprinkler"><RegularText style={{ textAlign: 'center', color: 'white', textDecoration: 'underline'}}>Wait, what?</RegularText></Link>
         </BrownContainer>
       </MainContainer>
     )

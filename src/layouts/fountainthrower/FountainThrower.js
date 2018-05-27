@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
 import getWeb3 from '../../util/web3/getWeb3'
+import {Link} from 'react-router'
 import Toilet from '../../../build/contracts/Toilet.json'
-import { BrownContainer, Title, RegularText, TTButton, FlexColumnContainer, Link, Shaker } from '../../styles';
+import { BrownContainer, Title, RegularText, TTButton, FlexColumnContainer, Shaker } from '../../styles';
 
 
 
@@ -60,13 +61,13 @@ class FountainThrower extends Component {
     if(this.state.step === 'start'){
       body = (
       <FlexColumnContainer style={{textAlign:'center', justifyContent:'space-around', height:'100%'}}>
-        <RegularText>Great! Your browser is web3 enabled and you have DAI in your wallet.</RegularText>
+        <RegularText>Great! Your browser is <Link href="https://www.reddit.com/r/ethereum/comments/87wx66/growing_list_of_web3_mobile_browsers/">Web3</Link> enabled and you have DAI in your wallet.</RegularText>
         <img src="/assets/images/box.svg"  style={{height: '30vh'}}></img>
         <RegularText>You'll get a surprise ERC-20 or ERC-721 token. It's a magic fountain so you don't know exactly what you'll get </RegularText>
         <FlexColumnContainer>
-          <RegularText>All proceeds <Link>go to charity</Link></RegularText>
+          <RegularText>All proceeds <Link href="https://giveth.io/">go to charity</Link></RegularText>
           <TTButton onClick={this.handleSubmit} style={{marginTop:'10px'}}>Throw 5 DAI</TTButton>
-          <RegularText><Link>or throw directly from your wallet</Link></RegularText>
+          {/* <RegularText><Link>or throw directly from your wallet</Link></RegularText> */}
         </FlexColumnContainer>
       </FlexColumnContainer>
 
@@ -87,9 +88,9 @@ class FountainThrower extends Component {
           <div>
             <RegularText style={{marginBottom: '0px'}}>How about:</RegularText>
             <ul>
-              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link>Throwing some more coins</Link></RegularText></li>
-              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> Flushing some spoiled tokens in the <Link>Token Toilet</Link></RegularText></li>
-              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link>Learning more about this project</Link></RegularText></li>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link to="/fountain">Throwing some more coins</Link></RegularText></li>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> Flushing some spoiled tokens in the <Link to="/toilet">Token Toilet</Link></RegularText></li>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link to="/sprinkler">Learning more about this project</Link></RegularText></li>
             </ul>
           </div>
         </FlexColumnContainer>

@@ -3,7 +3,8 @@ import {FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import getWeb3 from '../../util/web3/getWeb3'
 import ERC721 from '../../../build/contracts/ERC721Basic.json'
 import ERC20 from '../../../build/contracts/ERC20Basic.json'
-import { MainContainer, BrownContainer, Title, RegularText, TTButton, FlexColumnContainer, Link, Spinner } from '../../styles';
+import {Link} from 'react-router'
+import { MainContainer, BrownContainer, Title, RegularText, TTButton, FlexColumnContainer, Spinner } from '../../styles';
 
 
 
@@ -69,7 +70,7 @@ class ToiletFlusher extends Component {
     if(this.state.step === 'start'){
       body = (
         <form style={{height:'100%', margin: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly'}}>
-        <RegularText style={{textAlign:'center'}}>Great! Your browser is Web3 enabled. What are you dumping?</RegularText>
+        <RegularText style={{textAlign:'center'}}>Great! Your browser is <Link href="https://www.reddit.com/r/ethereum/comments/87wx66/growing_list_of_web3_mobile_browsers/">Web3</Link> enabled. What are you dumping?</RegularText>
           <FormGroup>
           <ControlLabel>Token Type</ControlLabel>
           <FormControl componentClass="select" placeholder="select" onChange={this.handleChange} name="tokenType" label="token type">
@@ -96,7 +97,7 @@ class ToiletFlusher extends Component {
           />
         </FormGroup>
         <TTButton onClick={this.handleSubmit} style={{marginTop:'10px', alignSelf: 'center'}}> Flush That Sh*t</TTButton>
-        <RegularText style={{marginTop:'10px', alignSelf: 'center'}}><Link>or throw directly from your wallet</Link></RegularText>
+        {/* <RegularText style={{marginTop:'10px', alignSelf: 'center'}}><Link>or throw directly from your wallet</Link></RegularText> */}
 
       </form>
       )
@@ -115,9 +116,9 @@ class ToiletFlusher extends Component {
           <div>
             <RegularText style={{marginBottom: '0px'}}>How about:</RegularText>
             <ul>
-              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link>Flushing some more stuff</Link></RegularText></li>
-              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> Throwing some DAI in the <Link>Token Fountain</Link></RegularText></li>
-              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link>Learning more about this project</Link></RegularText></li>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link to="/toilet">Flushing some more stuff</Link></RegularText></li>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> Throwing some DAI in the <Link  to="/fountain">Token Fountain</Link></RegularText></li>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link to="/sprinkler">Learning more about this project</Link></RegularText></li>
             </ul>
           </div>
         </FlexColumnContainer>

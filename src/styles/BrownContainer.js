@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 const BrownContainer = styled.div `
 background-color: #9A7E5C;
+color: #FFFFFF;
 width: 100%;
 flex: 5;
 display: flex;

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Button } from 'react-bootstrap';
 import { ContractForm } from 'drizzle-react-components'
 import styled from "styled-components";
-import { MainContainer, BlueContainer, BrownContainer, Title, RegularText} from '../../styles'
+import { MainContainer, BlueContainer, BrownContainer, Title, RegularText, TTButton} from '../../styles'
 
 
 class Fountain extends Component {
@@ -25,7 +25,8 @@ class Fountain extends Component {
         </div>
         <BrownContainer>
             <RegularText style={{textAlign:'center', color: 'white'}}>Throw 5 DAI into the Token Fountain and receive surprise tokens in return. Kitties, Dentacoin, or whatever the RNG decides.<b>Who knows what the future holds?</b></RegularText>
-            <ContractForm contract="Toilet" method="getSurprise"/>
+            {/* <ContractForm contract="Toilet" method="getSurprise"/> */}
+            <TTButton>Submit</TTButton>
             <a style={{ textAlign: 'center', color: 'white' }}>Wait, what?</a>
         </BrownContainer>
       </main>

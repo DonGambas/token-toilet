@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {FormGroup, ControlLabel, FormControl, Button, FieldGroup } from 'react-bootstrap';
 import getWeb3 from '../../util/web3/getWeb3'
+import Toilet from '../../../build/contracts/Toilet.json'
+
 
 
 
@@ -21,7 +23,7 @@ class FountainThrower extends Component {
     getWeb3
     .then(results => {
       this.setState({
-        web3: results.web3
+        web3: results.payload.web3Instance
       })
     })
     .catch(() => {
@@ -44,11 +46,11 @@ class FountainThrower extends Component {
       this.setState({step:'success'});
     }, 500)
 
-    /*const contract = new this.state.web3.eth.Contract( ERC20.abi, contractAddress);
+    const contract = new this.state.web3.eth.Contract( Toilet.abi, '0x254dffcd3277c0b1660f6d42efbb754edababc2b');
     contract.methods.getLoot().send({from: this.props.accounts[0]})
       .then(receipt => {
-
-      });*/
+        console.log(receipt)
+      });
   }
 
   render() {

@@ -3,7 +3,7 @@ import {FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import getWeb3 from '../../util/web3/getWeb3'
 import ERC721 from '../../../build/contracts/ERC721Basic.json'
 import ERC20 from '../../../build/contracts/ERC20Basic.json'
-import { MainContainer, BrownContainer, Title, RegularText, TTButton, FlexColumnContainer, Link } from '../../styles';
+import { MainContainer, BrownContainer, Title, RegularText, TTButton, FlexColumnContainer, Link, Spinner } from '../../styles';
 
 
 
@@ -46,7 +46,7 @@ class ToiletFlusher extends Component {
 
     setTimeout(() => {
       this.setState({step:'success'});
-    }, 500)
+    }, 3000)
 
     /*if(this.state.tokenType === "erc20"){
       const contract = new this.state.web3.eth.Contract( ERC20.abi, contract);
@@ -102,11 +102,25 @@ class ToiletFlusher extends Component {
       )
     } else if (this.state.step === "loading"){
       body = (
-        <p>submitted token</p>
+        <FlexColumnContainer>
+          <Title>Flushing...</Title>
+          <Spinner><img src="/assets/images/flush.svg"  style={{height: '30vh'}}></img></Spinner>
+        </FlexColumnContainer>
       )
     } else if (this.state.step === "success"){
       body = (
-        <p>Thanks for Flushing</p>
+        <FlexColumnContainer>
+          <img src="/assets/images/toilet-paper.png"  style={{height: '30vh'}}></img>
+          <Title>Thanks for Flushing!</Title>
+          <div>
+            <RegularText style={{marginBottom: '0px'}}>How about:</RegularText>
+            <ul>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link>Flushing some more stuff</Link></RegularText></li>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> Throwing some DAI in the <Link>Token Fountain</Link></RegularText></li>
+              <li style={{marginBottom: '0px'}}><RegularText><span style={{margin: '0 5px'}}>-</span> <Link>Learning more about this project</Link></RegularText></li>
+            </ul>
+          </div>
+        </FlexColumnContainer>
       )
     }
 

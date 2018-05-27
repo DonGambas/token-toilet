@@ -7,6 +7,7 @@ import RegularText from './RegularText'
 import Link from './Link'
 import TTButton from './TTButton'
 import FlexColumnContainer from './FlexColumnContainer'
+import Spinner from './Spinner'
 
 export{
   MainContainer,
@@ -17,5 +18,6 @@ export{
   RegularText,
   Link,
   TTButton,
-  FlexColumnContainer
+  FlexColumnContainer,
+  Spinner
 }

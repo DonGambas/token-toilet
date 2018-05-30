@@ -1,3 +1,5 @@
+![toilet token](https://dl.dropboxusercontent.com/s/alplq82gfdxstca/Screen%20Shot%202018-05-30%20at%2016.55.13.png)
+
 # The Token Toilet
 A hygienic solution for fecal tokens.
 
@@ -28,3 +30,4 @@ The Token Toilet team was:
 ### I want more information
 
 Check www.tokentoilet.com
+

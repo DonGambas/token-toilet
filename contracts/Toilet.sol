@@ -59,6 +59,10 @@ contract Toilet is ReentrancyGuard, Ownable {
     uint256 timestamp
   );
 
+   function Toilet (address sAddr) public {
+      serverAddress = sAddr;
+   }
+   
 
   /**
   * @dev initialize function for zeppelin os
@@ -205,6 +209,7 @@ contract Toilet is ReentrancyGuard, Ownable {
 
   }
 
+  /*
   function withdrawEverything () external onlyOwner {
     
     for(uint i = 0; i < nonFungibleOwningKeys.length; i++){
@@ -220,9 +225,8 @@ contract Toilet is ReentrancyGuard, Ownable {
       t721.transfer(owner, fungibleOwnings[fungibleOwningKeys[i]]);
     }
 
- 
   }
-  
+  */  
 
 
 }

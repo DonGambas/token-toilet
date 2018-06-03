@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import {Button } from 'react-bootstrap';
-import { ContractForm } from 'drizzle-react-components'
 import {Link} from 'react-router'
-import styled from "styled-components";
-import { MainContainer, BlueContainer, BrownContainer, Title, RegularText, TTButton, LandingImage, LeftArrow, RightArrow} from '../../styles'
+import { BlueContainer, BrownContainer, Title, RegularText, TTButton, LandingImage, LeftArrow, RightArrow} from '../../styles'
 
 
 class Fountain extends Component {
@@ -36,12 +33,5 @@ class Fountain extends Component {
     )
   }
 }
-
-
-const FountainImage = styled.img `
-  position: absolute;
-  bottom: 0;
-  transform: translate(0, 100%);
-`;
 
 export default Fountain

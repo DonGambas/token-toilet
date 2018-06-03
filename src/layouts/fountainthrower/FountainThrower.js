@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap';
 import getWeb3 from '../../util/web3/getWeb3Instance'
 import {Link} from 'react-router'
 import Toilet from '../../../build/contracts/Toilet.json'
@@ -62,7 +61,7 @@ class FountainThrower extends Component {
       body = (
       <FlexColumnContainer style={{textAlign:'center', justifyContent:'space-around', height:'100%'}}>
         <RegularText>Great! Your browser is <Link href="https://www.reddit.com/r/ethereum/comments/87wx66/growing_list_of_web3_mobile_browsers/">Web3</Link> enabled and you have DAI in your wallet.</RegularText>
-        <img src="/assets/images/box.svg"  style={{height: '30vh'}}></img>
+        <img alt='box' src="/assets/images/box.svg"  style={{height: '30vh'}}></img>
         <RegularText>You'll get a surprise ERC-20 or ERC-721 token. It's a magic fountain! </RegularText>
         <FlexColumnContainer>
           <RegularText>All proceeds <Link href="https://giveth.io/">go to charity</Link></RegularText>
@@ -76,14 +75,14 @@ class FountainThrower extends Component {
       body = (
         <FlexColumnContainer>
           <Title style={{textAlign:'center', fontFamily: 'sans-serif', margin: '20px', fontSize: '36px'}}>Here's your surprise!</Title>
-          <Shaker><img src="/assets/images/box.svg"  style={{height: '30vh'}}></img></Shaker>
+          <Shaker><img alt='box' src="/assets/images/box.svg"  style={{height: '30vh'}}></img></Shaker>
         </FlexColumnContainer>
       )
     } else if (this.state.step === "success"){
       body = (
         <FlexColumnContainer style={{ justifyContent:'space-between', height:'100%'}}>
           <Title style={{textAlign:'center', fontFamily: 'sans-serif', margin: '20px', fontSize: '36px'}}>Here's your surprise!</Title>
-          <img src="/assets/images/kitty-eth.svg"  style={{height: '25vh'}}></img>
+          <img alt='kitty' src="/assets/images/kitty-eth.svg"  style={{height: '25vh'}}></img>
           <Regular-Text style={{fontSize: '24px'}}><b>Cryptokitty #452252!</b></Regular-Text>
           <div>
             <RegularText style={{marginBottom: '0px'}}>How about:</RegularText>

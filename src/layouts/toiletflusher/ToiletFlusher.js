@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import {FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
+import {FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import getWeb3 from '../../util/web3/getWeb3Instance'
-import ERC721 from '../../../build/contracts/ERC721Basic.json'
-import ERC20 from '../../../build/contracts/ERC20Basic.json'
 import {Link} from 'react-router'
 import { MainContainer, BrownContainer, Title, RegularText, TTButton, FlexColumnContainer, Spinner } from '../../styles';
 
@@ -103,13 +101,13 @@ class ToiletFlusher extends Component {
       body = (
         <FlexColumnContainer>
           <Title style={{fontFamily: 'sans-serif'}}>Flushing...</Title>
-          <Spinner><img src="/assets/images/flush.svg"  style={{height: '30vh'}}></img></Spinner>
+          <Spinner><img alt='flush' src="/assets/images/flush.svg"  style={{height: '30vh'}}></img></Spinner>
         </FlexColumnContainer>
       )
     } else if (this.state.step === "success"){
       body = (
         <FlexColumnContainer>
-          <img src="/assets/images/toilet-paper.png"  style={{height: '30vh'}}></img>
+          <img alt='toilet-paper' src="/assets/images/toilet-paper.png"  style={{height: '30vh'}}></img>
           <Title style={{fontFamily: 'sans-serif', fontSize:'32px', margin:'30px 0'}}>Thanks for Flushing!</Title>
           <div>
             <RegularText style={{marginBottom: '0px'}}>How about:</RegularText>

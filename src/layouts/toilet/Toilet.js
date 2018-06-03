@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router'
-import { Button } from 'react-bootstrap';
 import { MainContainer, BlueContainer, BrownContainer, RegularText, TTButton, Title, LandingImage, RightArrow} from '../../styles'
 
 
